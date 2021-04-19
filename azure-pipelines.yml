@@ -8,6 +8,11 @@ trigger:
 
 pool:
   vmImage: 'windows-latest'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
 
 variables:
   solution: '**/*.sln'
