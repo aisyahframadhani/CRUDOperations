@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CRUDOperations.Models.Product>
+@{
+        ViewData["Title"] = "Index";
+
+    }
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <h1 class="alert alert-info">Product List</h1>
+        </div>
+        <div class="col-3" mt-3>
+            <a asp-action="Create" asp-controller="Product" class="btn btn-success">Create Product</a>
+        </div>
+    </div>
+</div>
+
+    <table class="table table-striped border">
+        <tr>
+            <th><label asp-for="@Model.FirstOrDefault().ProductName"></label></th>
+            <th><label asp-for="@Model.FirstOrDefault().UnitPrice"></label></th>
+            <th><label asp-for="@Model.FirstOrDefault().TotalQuantity"></label></th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(m => item.ProductName) </td>
+                <td>@Html.DisplayFor(m => item.UnitPrice) </td>
+                <td>@Html.DisplayFor(m => item.TotalQuantity) </td>
+                <td>
+                    <a asp-route-id="@item.ID" asp-action="Edit" asp-controller="Product" class="btn btn-primary btn-sm">Edit</a>
+                    <a asp-route-id="@item.ID" asp-action="Delete" asp-controller="Product" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
